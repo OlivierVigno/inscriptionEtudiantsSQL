@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".showEtudiantActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/showLblNom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showNom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/showLblPrenom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="Prénom:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showPrenom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/showLblAdresse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adresse:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showAdresse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/showLblProvince"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Province:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showProvince"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/showLblVille"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ville:"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/showVille"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/showLblProgramme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:gravity="center_horizontal"
+                android:text="Programme:" />
+
+            <TextView
+                android:id="@+id/showProgramme"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:textSize="18dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            app:srcCompat="@drawable/download"
+            tools:srcCompat="@drawable/download" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retourner" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

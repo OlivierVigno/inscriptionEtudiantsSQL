@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">inscriptionEtudiants</string>
+    <string-array name="provinces">
+        <item>Québec</item>
+        <item>Ontario</item>
+    </string-array>
+
+    <string-array name="villes_Quebec">
+        <item>Sherbrooke</item>
+        <item>Magog</item>
+        <item>Drummondville</item>
+        <item>Montréal</item>
+    </string-array>
+
+    <string-array name="villes_Ontario">
+        <item>Toronto</item>
+        <item>Ottawa</item>
+        <item>Kingston</item>
+    </string-array>
+    
+    <string-array name="programmes">
+        <item>Gestion de réseau</item>
+        <item>Conception et programmation</item>
+    </string-array>
+</resources>

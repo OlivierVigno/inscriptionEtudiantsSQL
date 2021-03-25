@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".informationsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="25dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleReseau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="Gestion réseau"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/reseauDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus et malesuada fames ac turpis egestas integer. Ornare lectus sit amet est placerat. Faucibus nisl tincidunt eget nullam non nisi. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae."
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleProg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="Conception et programmation"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/progDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Et netus et malesuada fames ac turpis egestas integer. Ornare lectus sit amet est placerat. Faucibus nisl tincidunt eget nullam non nisi. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae."
+                android:textSize="15dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/buttonRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="75dp"
+                android:text="Retourner" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
