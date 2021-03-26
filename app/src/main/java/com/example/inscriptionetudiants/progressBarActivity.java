@@ -66,8 +66,8 @@ public class progressBarActivity extends AppCompatActivity  {
         @Override
         protected void onPostExecute(Integer result) {
             Intent intentDone = new Intent(progressBarActivity.this, showEtudiantActivity.class);
-            Bundle bundle = getIntent().getBundleExtra("infos");
-            intentDone.putExtra("infos", bundle);
+            int id = getIntent().getIntExtra("id_etudiant", 0);
+            intentDone.putExtra("id_etudiant", id);
             startActivity(intentDone);
         }
     }

@@ -9,12 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import helper.DatabaseHelper;
+import model.Etudiant;
+
 public class showEtudiantActivity extends AppCompatActivity {
+
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_etudiant);
+
+        db = DatabaseHelper.getInstance(this);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -23,25 +30,29 @@ public class showEtudiantActivity extends AppCompatActivity {
 
         TextView textActionBar = (TextView) findViewById(R.id.actionBar_text);
         textActionBar.setText("Inscription complété");
-        Bundle bundle = getIntent().getBundleExtra("infos");
+        int id_etudiant = getIntent().getIntExtra("id_etudiant", 0);
+
+        Etudiant etudiant  = new Etudiant();
+
+        etudiant = db.getEtudiant(id_etudiant);
 
         TextView textNom = (TextView) findViewById(R.id.showNom);
-        textNom.setText(bundle.getString("nom"));
+        textNom.setText(etudiant.getNom());
 
         TextView textPrenom = (TextView) findViewById(R.id.showPrenom);
-        textPrenom.setText(bundle.getString("prenom"));
+        textPrenom.setText(etudiant.getPrenom());
 
         TextView textProvince = (TextView) findViewById(R.id.showProvince);
-        textProvince.setText(bundle.getString("province"));
+        textProvince.setText(db.getName(etudiant.getProvince(), "province"));
 
         TextView textVille = (TextView) findViewById(R.id.showVille);
-        textVille.setText(bundle.getString("ville"));
+        textVille.setText(db.getName(etudiant.getVille(), "ville"));
 
         TextView textAdresse = (TextView) findViewById(R.id.showAdresse);
-        textAdresse.setText(bundle.getString("noCivique") + ", " + bundle.getString("rue"));
+        textAdresse.setText(etudiant.getNoCivique() + ", " + etudiant.getRue());
 
         TextView textProgramme = (TextView) findViewById(R.id.showProgramme);
-        textProgramme.setText(bundle.getString("programme"));
+        textProgramme.setText(db.getName(etudiant.getProgramme(), "programme"));
 
         Button retour = (Button) findViewById(R.id.buttonRetour);
 

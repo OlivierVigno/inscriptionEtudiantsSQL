@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import helper.DatabaseHelper;
+import model.Etudiant;
 import model.Programme;
 import model.Province;
 import model.Ville;
@@ -41,43 +42,9 @@ public class inscriptionFormActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_form);
 
-        db = new DatabaseHelper(getApplicationContext());
+        getApplicationContext().deleteDatabase("myDatabase");
 
-        Province province1 = new Province("Québec");
-        int id_provinceQuebec = db.createProvince(province1);
-        Ville ville1 = new Ville("Sherbrooke", id_provinceQuebec);
-
-        /*
-        Province province1 = new Province("Québec");
-        Province province2 = new Province("Ontario");
-
-        Long id_provinceQuebec = db.createProvince(province1);
-        Long id_provinceOntario = db.createProvince(province2);
-
-        Ville ville1 = new Ville("Sherbrooke", id_provinceQuebec);
-        Ville ville2 = new Ville("Magog", id_provinceQuebec);
-        Ville ville3 = new Ville("Drummondville", id_provinceQuebec);
-        Ville ville4 = new Ville("Montréal", id_provinceQuebec);
-
-        Ville ville5 = new Ville("Toronto", id_provinceOntario);
-        Ville ville6 = new Ville("Ottawa", id_provinceOntario);
-        Ville ville7 = new Ville("Kingston", id_provinceOntario);
-
-        List<Ville> listeVilles = Arrays.asList(ville1, ville2, ville3, ville4, ville5, ville6, ville7);
-
-        for (Ville ville : listeVilles) {
-            db.createVille(ville);
-        }
-
-        Programme programme1 = new Programme("Gestion de réseaux");
-        Programme programme2 = new Programme("Conception et programmation");
-
-        List<Programme> listeProgrammes = Arrays.asList(programme1, programme2);
-
-        for (Programme programme : listeProgrammes) {
-            db.createProgramme(programme);
-        }
-        */
+        db = DatabaseHelper.getInstance(this);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -91,60 +58,33 @@ public class inscriptionFormActivity extends AppCompatActivity implements View.O
         spinnerVille = (Spinner) findViewById(R.id.spnVille);
         spinnerProgramme = (Spinner) findViewById(R.id.spnProgramme);
 
-        //String[] ville = db.getVilles("Québec");
-
-        //Button inscription = (Button) findViewById(R.id.buttonCompleterInscription);
-        //inscription.setText(ville[0]);
-
-        String[] ville = {"QC", "ON"};
-        String[] programme = {"QC", "ON"};
-        String[] province = {"QC", "ON"};
-
-        ArrayAdapter<String> adapterProvince = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, programme);
+        ArrayAdapter<String> adapterProvince = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, db.getProvinces());
         adapterProvince.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProvince.setAdapter(adapterProvince);
 
-        ArrayAdapter<String> adapterProgramme = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, programme);
+        ArrayAdapter<String> adapterProgramme = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, db.getProgrammes());
         adapterProgramme.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProgramme.setAdapter(adapterProgramme);
-
-        ArrayAdapter<String> adapterVille = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, province);
-        adapterVille.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerVille.setAdapter(adapterVille);
-
-        /*
-        ArrayAdapter<CharSequence> adapterProvince = ArrayAdapter.createFromResource(this, R.array.provinces, android.R.layout.simple_spinner_item);
-        adapterProvince.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        ArrayAdapter<CharSequence> adapterProgramme = ArrayAdapter.createFromResource(this, R.array.programmes, android.R.layout.simple_spinner_item);
-        adapterProvince.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
 
         spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                String[] villes = {};
                 String selectedProvince = parent.getItemAtPosition(position).toString();
-                /*switch (selectedProvince) {
-                    case "Québec":
-                        spinnerVille.setAdapter(new ArrayAdapter<String>(inscriptionFormActivity.this, R.layout.support_simple_spinner_dropdown_item, getResources().getStringArray(R.array.villes_Quebec)));
-                        break;
-                    case "Ontario":
-                        spinnerVille.setAdapter(new ArrayAdapter<String>(inscriptionFormActivity.this, R.layout.support_simple_spinner_dropdown_item, getResources().getStringArray(R.array.villes_Ontario)));
-                        break;
-                }
-                ArrayAdapter<String> adapterVille = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, db.getVilles(selectedProvince));
+                villes = db.getVilles(selectedProvince);
+                ArrayAdapter<String> adapterVille = new ArrayAdapter<String>(inscriptionFormActivity.this, android.R.layout.simple_spinner_item, villes);
                 adapterVille.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerVille.setAdapter(adapterVille);
-            }*/
-            /*
+            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
                 // can leave this empty
             }
-        });*/
+        });
 
         Button inscription = (Button) findViewById(R.id.buttonCompleterInscription);
         Button clear = (Button) findViewById(R.id.buttonClear);
@@ -153,8 +93,6 @@ public class inscriptionFormActivity extends AppCompatActivity implements View.O
         inscription.setOnClickListener(this);
         clear.setOnClickListener(this);
         cancel.setOnClickListener(this);
-
-        //db.closeDB();
     }
 
     @Override
@@ -172,17 +110,21 @@ public class inscriptionFormActivity extends AppCompatActivity implements View.O
                 String selectedVille = spinnerVille.getSelectedItem().toString();
                 String selectedProgramme = spinnerProgramme.getSelectedItem().toString();
 
-                Bundle bundle = new Bundle();
-                bundle.putString("prenom", prenom.getText().toString());
-                bundle.putString("nom", nom.getText().toString());
-                bundle.putString("noCivique", noCivique.getText().toString());
-                bundle.putString("rue", rue.getText().toString());
-                bundle.putString("telephone", telephone.getText().toString());
-                bundle.putString("province", selectedProvince);
-                bundle.putString("ville", selectedVille);
-                bundle.putString("programme", selectedProgramme);
-                intentInformations.putExtra("infos", bundle);
+                System.out.println(selectedProgramme);
 
+                Etudiant etudiant = new Etudiant();
+
+                etudiant.setNom(nom.getText().toString());
+                etudiant.setPrenom(prenom.getText().toString());
+                etudiant.setNoCivique(Integer.parseInt(noCivique.getText().toString()));
+                etudiant.setRue(rue.getText().toString());
+                etudiant.setTelephone(telephone.getText().toString());
+                etudiant.setProvince(db.getId(selectedProvince, "province"));
+                etudiant.setVille(db.getId(selectedVille, "ville"));
+                etudiant.setProgramme(db.getId(selectedProgramme, "programme"));
+
+                int idEtudiant = db.createEtudiant(etudiant);
+                intentInformations.putExtra("id_etudiant", idEtudiant);
                 startActivity(intentInformations);
                 break;
             case R.id.buttonClear:
